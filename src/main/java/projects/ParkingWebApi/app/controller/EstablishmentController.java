@@ -1,5 +1,7 @@
 package projects.ParkingWebApi.app.controller;
 
+import jakarta.annotation.Nullable;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -62,5 +64,34 @@ public class EstablishmentController {
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(establishment);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Establishment> update(@PathVariable long id, @RequestBody EstablishmentDTO establishmentDTO) {
+
+        Optional<Establishment> establishment = repository.findById(id);
+
+        establishment.get().setName(establishmentDTO.name);
+        establishment.get().setCnpj(establishmentDTO.cnpj);
+        establishment.get().setStreetAddress(establishmentDTO.streetAddress);
+        establishment.get().setNeighborhood(establishmentDTO.neighborhood);
+        establishment.get().setPostalCode(establishmentDTO.postalCode);
+        establishment.get().setState(establishmentDTO.state);
+        establishment.get().setCity(establishmentDTO.city);
+        establishment.get().setTelephone(establishmentDTO.telephone);
+        establishment.get().setParkingSpacesForMotorcycles(establishmentDTO.parkingSpacesForMotorcycles);
+        establishment.get().setParkingSpacesForCars(establishmentDTO.parkingSpacesForCars);
+
+         Establishment updated = repository.save(establishment.get());
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(updated);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable long id) {
+        repository.deleteById(id);
+
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
