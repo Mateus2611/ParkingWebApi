@@ -91,4 +91,27 @@ public class VehicleControllerTest {
         Assertions.assertEquals(savedVehicle.getPlate(), response.getBody().get().getPlate());
         Assertions.assertEquals(savedVehicle.getType(), response.getBody().get().getType());
     }
+
+    @Test
+    void update_UseIdToUpdateAVehicleData_ReturnVehicleObject() {
+        Vehicle savedVehicle = new Vehicle("BMW", "320i", "Red", "JVC8403", VehicleType.CAR);
+        savedVehicle.setId(1L);
+        Vehicle originalVehicle = new Vehicle("BMW", "320i", "Red", "JVC8403", VehicleType.CAR);
+        originalVehicle.setId(1L);
+        VehicleDTO dataToUpdate = new VehicleDTO("HONDA", "CG 125", "Black", "MOP9201", VehicleType.MOTORCYCLE);
+
+        Mockito.when(repository.findById(anyLong())).thenReturn(Optional.of(savedVehicle));
+        Mockito.when(repository.save(any(Vehicle.class))).thenReturn(savedVehicle);
+
+        ResponseEntity<Vehicle> response = controller.update(originalVehicle.getId(), dataToUpdate);
+
+        Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
+        Assertions.assertEquals(originalVehicle.getId(), Objects.requireNonNull(response.getBody().getId()));
+        Assertions.assertNotEquals(originalVehicle.getBrand(), response.getBody().getBrand());
+        Assertions.assertNotEquals(originalVehicle.getModel(), response.getBody().getModel());
+        Assertions.assertNotEquals(originalVehicle.getColor(), response.getBody().getColor());
+        Assertions.assertNotEquals(originalVehicle.getPlate(), response.getBody().getPlate());
+        Assertions.assertNotEquals(originalVehicle.getType(), response.getBody().getType());
+
+    }
 }

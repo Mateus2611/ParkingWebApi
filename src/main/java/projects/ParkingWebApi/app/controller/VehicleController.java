@@ -51,4 +51,21 @@ public class VehicleController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(repository.findById(id));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Vehicle> update(@PathVariable Long id, @RequestBody VehicleDTO dataToUpdate) {
+
+        Optional<Vehicle> vehicle = repository.findById(id);
+
+        vehicle.get().setBrand(dataToUpdate.brand);
+        vehicle.get().setModel(dataToUpdate.model);
+        vehicle.get().setColor(dataToUpdate.color);
+        vehicle.get().setPlate(dataToUpdate.plate);
+        vehicle.get().setType(dataToUpdate.type);
+
+        Vehicle updated = repository.save(vehicle.get());
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(updated);
+    }
 }
