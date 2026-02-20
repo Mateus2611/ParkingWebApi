@@ -114,4 +114,16 @@ public class VehicleControllerTest {
         Assertions.assertNotEquals(originalVehicle.getType(), response.getBody().getType());
 
     }
+
+    @Test
+    void delete_UseIdToDeleteSavedVehicle_WithoutReturn() {
+        Long id = 1L;
+
+        Mockito.doNothing().when(repository).deleteById(id);
+
+        ResponseEntity<Void> response = controller.delete(id);
+
+        Assertions.assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+        Mockito.verify(repository, Mockito.times(1)).deleteById(id);
+    }
 }

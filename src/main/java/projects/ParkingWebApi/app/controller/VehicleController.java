@@ -68,4 +68,12 @@ public class VehicleController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(updated);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+
+        repository.deleteById(id);
+
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }
