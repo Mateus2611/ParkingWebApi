@@ -1,5 +1,6 @@
 package projects.ParkingWebApi.app.core;
 
+import jakarta.annotation.Nullable;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.MappedCollection;
@@ -13,57 +14,46 @@ public class Ticket {
 
     public Ticket() {}
 
-    public Ticket(Establishment establishment, Vehicle vehicle, LocalDateTime checkin, LocalDateTime checkout) {
-        this.establishment = establishment;
-        this.vehicle = vehicle;
-        this.checkin = checkin;
-        this.checkout = checkout;
+    public Ticket(Long establishment, Long vehicle) {
+        this.establishmentId = establishment;
+        this.vehicleId = vehicle;
+        this.checkin = LocalDateTime.now();
     }
 
     @Id
+    @Column("id")
     private Long id;
-    @MappedCollection(idColumn = "establishment_id")
-    private Establishment establishment;
-    @MappedCollection(idColumn = "vehicle_id")
-    private Vehicle vehicle;
+    @Column("establishment_id")
+    private Long establishmentId;
+    @Column("vehicle_id")
+    private Long vehicleId;
     @Column("checkin")
     private LocalDateTime checkin;
+    @Nullable
     @Column("checkout")
-    private LocalDateTime checkout;
+    private LocalDateTime checkout = null;
 
     public Long getId() {
         return id;
     }
 
-    public Establishment getEstablishment() {
-        return establishment;
+    public Long getEstablishmentId() {
+        return establishmentId;
     }
 
-    public void setEstablishment(Establishment establishment) {
-        this.establishment = establishment;
-    }
-
-    public Vehicle getVehicle() {
-        return vehicle;
-    }
-
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
+    public Long getVehicleId() {
+        return vehicleId;
     }
 
     public LocalDateTime getCheckin() {
         return checkin;
     }
 
-    public void setCheckin(LocalDateTime checkin) {
-        this.checkin = checkin;
-    }
-
     public LocalDateTime getCheckout() {
         return checkout;
     }
 
-    public void setCheckout(LocalDateTime checkout) {
-        this.checkout = checkout;
+    public void setCheckout() {
+        this.checkout = LocalDateTime.now();
     }
 }

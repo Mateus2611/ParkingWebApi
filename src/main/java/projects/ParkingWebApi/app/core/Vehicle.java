@@ -20,6 +20,7 @@ public class Vehicle {
     }
 
     @Id
+    @Column("id")
     private Long id;
     @Column("brand")
     private String brand;

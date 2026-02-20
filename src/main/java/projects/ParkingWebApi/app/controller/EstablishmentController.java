@@ -1,8 +1,5 @@
 package projects.ParkingWebApi.app.controller;
 
-import jakarta.annotation.Nullable;
-import jakarta.validation.constraints.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;

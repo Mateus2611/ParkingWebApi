@@ -24,6 +24,7 @@ public class Establishment{
     }
 
     @Id
+    @Column("id")
     private Long id;
     @Column("name")
     private String name;
