@@ -1,5 +1,9 @@
 package projects.ParkingWebApi.app.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -16,6 +20,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/establishment")
+@Tag(name = "Establishment", description = "Endpoints for managing parking locations")
 public class EstablishmentController {
 
     private final IEstablishmentRepository repository;
@@ -24,6 +29,11 @@ public class EstablishmentController {
         this.repository = repository;
     }
 
+    @Operation(
+         summary = "Create new establishment",
+         description = "Registers a new parking establishment in the system."
+    )
+    @ApiResponse(responseCode = "201", description = "Establishment created")
     @PostMapping
     public ResponseEntity<Establishment> create(@RequestBody EstablishmentDTO establishmentDTO) {
 
@@ -44,9 +54,17 @@ public class EstablishmentController {
                 .body(created);
     }
 
+    @Operation(
+            summary = "Get saved establishments",
+            description = "Get all establishments saved on the system"
+    )
+    @ApiResponse(responseCode = "200", description = "Found Establishments")
     @GetMapping
     public ResponseEntity<List<EstablishmentResponse>> get(
+            @Parameter(description = "Zero-based page index (0..N)")
             @RequestParam(defaultValue = "0") int page,
+
+            @Parameter(description = "The size of the page to be returned")
             @RequestParam(defaultValue = "10") int size
     ) {
         Pageable pageable = PageRequest.of(page, size);
@@ -54,6 +72,11 @@ public class EstablishmentController {
                 .body(repository.findAll(pageable));
     }
 
+    @Operation(
+            summary = "Get details of a establishment saved on the system",
+            description = "Find a establishment filtered by ID"
+    )
+    @ApiResponse(responseCode = "200", description = "Found establishment")
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Establishment>> getById(@PathVariable long id) {
 
@@ -63,6 +86,11 @@ public class EstablishmentController {
                 .body(establishment);
     }
 
+    @Operation(
+            summary = "Update information's of a establishment saved on the system",
+            description = "Get a establishment and update your information's"
+    )
+    @ApiResponse(responseCode = "200", description = "Establishment updated")
     @PutMapping("/{id}")
     public ResponseEntity<Establishment> update(@PathVariable long id, @RequestBody EstablishmentDTO establishmentDTO) {
 
@@ -85,6 +113,11 @@ public class EstablishmentController {
                 .body(updated);
     }
 
+    @Operation(
+            summary = "Delete a establishment saved on the system",
+            description = "Delete the establishment using ID"
+    )
+    @ApiResponse(responseCode = "204", description = "Establishment deleted")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable long id) {
         repository.deleteById(id);
