@@ -1,5 +1,9 @@
 package projects.ParkingWebApi.app.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -15,6 +19,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/vehicle")
+@Tag(name = "Vehicle", description = "Endpoints for managing vehicles registration")
 public class VehicleController {
 
     private final IVehicleRepository repository;
@@ -23,7 +28,11 @@ public class VehicleController {
         this.repository = repository;
     }
 
-
+    @Operation(
+            summary = "Created new vehicle",
+            description = "Register new vehicles in the system"
+    )
+    @ApiResponse(responseCode = "201", description = "Vehicle created")
     @PostMapping
     public ResponseEntity<Vehicle> create(VehicleDTO dto) {
 
@@ -34,9 +43,17 @@ public class VehicleController {
                 .body(created);
     }
 
+    @Operation(
+            summary = "Get saved vehicles",
+            description = "Get all vehicles saved on system"
+    )
+    @ApiResponse(responseCode = "200", description = "Found Vehicles")
     @GetMapping
     public ResponseEntity<List<Vehicle>> get(
+            @Parameter(description = "Zero-based page index (0..N)")
             @RequestParam(defaultValue = "0") int page,
+
+            @Parameter(description = "The size of the page to be returned")
             @RequestParam(defaultValue = "10") int size) {
 
         Pageable pageable = PageRequest.of(page, size);
@@ -45,6 +62,11 @@ public class VehicleController {
                 .body(repository.findAll(pageable));
     }
 
+    @Operation(
+            summary = "Get a vehicle saved on the system",
+            description = "Find a vehicle filtered by ID"
+    )
+    @ApiResponse(responseCode = "200", description = "Found vehicle")
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Vehicle>> getById(@PathVariable long id) {
 
@@ -52,6 +74,11 @@ public class VehicleController {
                 .body(repository.findById(id));
     }
 
+    @Operation(
+            summary = "Update information's of a vehicle saved on the system",
+            description = "Get a vehicle and update your information's"
+    )
+    @ApiResponse(responseCode = "200", description = "Vehicle updated")
     @PutMapping("/{id}")
     public ResponseEntity<Vehicle> update(@PathVariable Long id, @RequestBody VehicleDTO dataToUpdate) {
 
@@ -69,6 +96,11 @@ public class VehicleController {
                 .body(updated);
     }
 
+    @Operation(
+            summary = "Delete vehicle saved on the system",
+            description = "Delete the vehicle using ID"
+    )
+    @ApiResponse(responseCode = "204", description = "Vehicle deleted")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
 
