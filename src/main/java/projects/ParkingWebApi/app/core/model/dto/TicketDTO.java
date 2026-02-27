@@ -1,4 +1,4 @@
-package projects.ParkingWebApi.app.core.dto;
+package projects.ParkingWebApi.app.core.model.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

@@ -1,13 +1,11 @@
-package projects.ParkingWebApi.app.core;
+package projects.ParkingWebApi.app.core.model;
 
 import jakarta.annotation.Nullable;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Table(name = "tb_ticket")
 public class Ticket {

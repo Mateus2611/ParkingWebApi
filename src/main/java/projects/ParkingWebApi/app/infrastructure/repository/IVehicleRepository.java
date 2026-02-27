@@ -2,7 +2,7 @@ package projects.ParkingWebApi.app.infrastructure.repository;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
-import projects.ParkingWebApi.app.core.Vehicle;
+import projects.ParkingWebApi.app.core.model.Vehicle;
 
 import java.util.List;
 

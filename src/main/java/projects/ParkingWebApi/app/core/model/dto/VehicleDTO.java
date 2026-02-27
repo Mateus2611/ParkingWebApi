@@ -1,8 +1,7 @@
-package projects.ParkingWebApi.app.core.dto;
+package projects.ParkingWebApi.app.core.model.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import org.springframework.data.relational.core.mapping.Column;
-import projects.ParkingWebApi.app.core.VehicleType;
+import projects.ParkingWebApi.app.core.model.VehicleType;
 
 public class VehicleDTO {
 

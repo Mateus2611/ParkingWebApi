@@ -1,4 +1,4 @@
-package projects.ParkingWebApi.app.infrastructure.controller;
+package projects.ParkingWebApi.app.controller;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -9,14 +9,13 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.Assert;
 import projects.ParkingWebApi.app.controller.TicketController;
-import projects.ParkingWebApi.app.core.Establishment;
-import projects.ParkingWebApi.app.core.Ticket;
-import projects.ParkingWebApi.app.core.Vehicle;
-import projects.ParkingWebApi.app.core.VehicleType;
-import projects.ParkingWebApi.app.core.dto.TicketDTO;
-import projects.ParkingWebApi.app.core.response.TicketResponse;
+import projects.ParkingWebApi.app.core.model.Establishment;
+import projects.ParkingWebApi.app.core.model.Ticket;
+import projects.ParkingWebApi.app.core.model.Vehicle;
+import projects.ParkingWebApi.app.core.model.VehicleType;
+import projects.ParkingWebApi.app.core.model.dto.TicketDTO;
+import projects.ParkingWebApi.app.core.model.response.TicketResponse;
 import projects.ParkingWebApi.app.infrastructure.repository.IEstablishmentRepository;
 import projects.ParkingWebApi.app.infrastructure.repository.ITicketRepository;
 import projects.ParkingWebApi.app.infrastructure.repository.IVehicleRepository;

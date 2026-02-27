@@ -1,4 +1,4 @@
-package projects.ParkingWebApi.app.infrastructure.controller;
+package projects.ParkingWebApi.app.controller;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,9 +11,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import projects.ParkingWebApi.app.controller.VehicleController;
-import projects.ParkingWebApi.app.core.Vehicle;
-import projects.ParkingWebApi.app.core.VehicleType;
-import projects.ParkingWebApi.app.core.dto.VehicleDTO;
+import projects.ParkingWebApi.app.core.model.Vehicle;
+import projects.ParkingWebApi.app.core.model.VehicleType;
+import projects.ParkingWebApi.app.core.model.dto.VehicleDTO;
 import projects.ParkingWebApi.app.infrastructure.repository.IVehicleRepository;
 
 import java.util.ArrayList;

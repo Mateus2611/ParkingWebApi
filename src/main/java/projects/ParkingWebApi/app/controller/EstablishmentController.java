@@ -9,9 +9,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import projects.ParkingWebApi.app.core.Establishment;
-import projects.ParkingWebApi.app.core.dto.EstablishmentDTO;
-import projects.ParkingWebApi.app.core.response.EstablishmentResponse;
+import projects.ParkingWebApi.app.core.model.Establishment;
+import projects.ParkingWebApi.app.core.model.dto.EstablishmentDTO;
+import projects.ParkingWebApi.app.core.model.response.EstablishmentResponse;
 import projects.ParkingWebApi.app.infrastructure.repository.IEstablishmentRepository;
 
 import java.net.URI;

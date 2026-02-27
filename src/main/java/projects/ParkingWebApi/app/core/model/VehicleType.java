@@ -1,4 +1,4 @@
-package projects.ParkingWebApi.app.core;
+package projects.ParkingWebApi.app.core.model;
 
 public enum VehicleType {
     MOTORCYCLE,

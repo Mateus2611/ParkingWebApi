@@ -1,11 +1,8 @@
-package projects.ParkingWebApi.app.core.response;
+package projects.ParkingWebApi.app.core.model.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.annotation.Nullable;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import projects.ParkingWebApi.app.core.Establishment;
-import projects.ParkingWebApi.app.core.Vehicle;
+import projects.ParkingWebApi.app.core.model.Establishment;
+import projects.ParkingWebApi.app.core.model.Vehicle;
 
 import java.time.LocalDateTime;
 

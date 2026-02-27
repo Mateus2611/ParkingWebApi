@@ -1,7 +1,8 @@
-package projects.ParkingWebApi.app.core.dto;
+package projects.ParkingWebApi.app.core.model.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.data.relational.core.mapping.Column;
+import projects.ParkingWebApi.app.core.model.Establishment;
 
 public class EstablishmentDTO {
 
@@ -47,4 +48,18 @@ public class EstablishmentDTO {
 
     @Schema(example = "300", description = "Set parking spaces for cars of the establishment")
     public Integer parkingSpacesForCars;
+
+    public Establishment mapper() {
+        return new Establishment(
+                this.name,
+                this.cnpj,
+                this.streetAddress,
+                this.neighborhood,
+                this.postalCode,
+                this.state,
+                this.city,
+                this.telephone,
+                this.parkingSpacesForMotorcycles,
+                this.parkingSpacesForCars);
+    }
 }
